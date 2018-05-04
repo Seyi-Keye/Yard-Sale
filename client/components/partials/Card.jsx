@@ -3,25 +3,45 @@ import ProductImage from '@/images/chai.jpg'
 import '@/scss/components/cards.scss'
 
 export default class Card extends Component {
-  render() {
+  constructor(props) {
+    super(props);
+  }
+
+  getColor(type) {
     const colors = ['rgb(14, 126, 18, 0.7)', 'rgba(11, 36, 251, 0.7)', 'rgba(252, 13, 28, 0.7)']
+    switch (type) {
+      case 'good':
+        return colors[0];
+      case 'fair':
+        return colors[1];
+      case 'poor':
+        return colors[2];
+      default:
+        return ''
+    }
+  }
+  render() {
     return (
       <div className="custom-card">
         <div className="card">
           <div className="img">
-            <img src={ProductImage} alt="image 1" />
+            <img src={this.props.img} alt={this.props.name} />
           </div>
           <div className="card-body">
             <div className="title">
-              <h3>Leather Chair</h3>
+              <h3>{this.props.name}</h3>
             </div>
             <div className="split">
               <div className="info">
-                <p className="condition" style={{ color: colors[1] }}><span><i className="fa fa-star" aria-hidden="true"></i> Fair</span></p>
-                <p><span className="number">20</span> piece available</p>
+                <p className="condition"
+                  style={{ color: this.getColor(this.props.condition) }}
+                >
+                  <span><i className="fa fa-star" aria-hidden="true"></i> {this.props.condition}</span>
+                </p>
+                <p><span className="number">{this.props.quantity}</span> piece available</p>
               </div>
               <div className="price">
-                <span>₦20,000</span>
+                <span>₦{this.props.price}</span>
               </div>
             </div>
           </div>
