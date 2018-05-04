@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var cartItems = sequelize.define('cartItems', {
+  var cartItems = sequelize.define('CartItems', {
     cartId: DataTypes.INTEGER,
     userId: DataTypes.INTEGER,
     userEmail: DataTypes.STRING,

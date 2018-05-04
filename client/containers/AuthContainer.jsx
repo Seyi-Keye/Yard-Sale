@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import Dashboard from '@/components/dashboard/Dashboard'
 
 
 const AuthContainer = ({ name, Comp, path, secured, exact }) => {
@@ -12,9 +13,13 @@ const AuthContainer = ({ name, Comp, path, secured, exact }) => {
     return <Redirect to="/dashboard" />
   }
 
+  console.log('AuthContainer: ', name)
+
   return <Route
       path={path}
-      component={Comp}
+      render={() => (
+        <Dashboard Comp={Comp} />
+      )}
       exact={exact}
       name={name}
       />

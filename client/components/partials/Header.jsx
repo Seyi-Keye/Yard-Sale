@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
 import '@/scss/components/header.scss';
 
 const mapStateToProps = state => ({
@@ -21,6 +22,9 @@ class Header extends Component {
           <div className="header-nav--item notification">
             <i className="fa fa-bell fa-2x"></i>
           </div>
+          <Link to="/raffle" className="header-nav--item notification">
+            <i className="fa fa-recycle fa-2x"></i>
+          </Link>
           <div className="header-nav--item cart d-flex">
             <i className="fa fa-shopping-cart fa-2x"></i>
             <span className="cart-text d-flex align-items-center justify-content-center">
