@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { Switch, BrowserRouter as Router, Route } from 'react-router-dom';
 
 import configureStore from './store';
-
 import './scss/main.scss';
 
-import Login from './components/Login.jsx';
+import router from './router';
 import ModalRoot from './components/ModalRoot.jsx';
 import FlashMessageRoot from './components/FlashMessageRoot.jsx';
 
@@ -18,7 +18,24 @@ const App = () => {
   return (
     <div>
       <FlashMessageRoot />
-      <Login />
+      <Router>
+        <div>
+          <Switch>
+            {
+              router.map((route) => (
+                <Route
+                  path={route.path}
+                  name={route.name}
+                  exact={route.exact}
+                  component={route.component}
+                  key={route.path}
+                >
+                </Route>
+              ))
+            }
+          </Switch>
+        </div>
+      </Router>
       <ModalRoot />
     </div>
   );
