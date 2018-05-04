@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Switch, BrowserRouter as Router, Route } from 'react-router-dom';
+import AuthContainer from '@/containers/AuthContainer'
 
 import configureStore from './store';
 import './scss/main.scss';
@@ -23,14 +24,14 @@ const App = () => {
           <Switch>
             {
               router.map((route) => (
-                <Route
+                <AuthContainer
                   path={route.path}
                   name={route.name}
                   exact={route.exact}
-                  component={route.component}
+                  Comp={route.component}
                   key={route.path}
-                >
-                </Route>
+                  secured={route.secured}
+                />
               ))
             }
           </Switch>
