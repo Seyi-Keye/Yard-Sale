@@ -17,8 +17,15 @@ module.exports = {
           as: 'userId',
         },
       },
-      product: {
-        type: Sequelize.STRING
+      productId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Products',
+          key: 'id',
+          as: 'productId',
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
       },
       quantity: {
         type: Sequelize.INTEGER
