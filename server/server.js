@@ -28,7 +28,8 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const PORT = process.env.PORT || 1234;
 
-import model from '../models';
+import model from './models';
+import Raffle from './raffle';
 const Product = model.Product;
 
 // Require all routes into the application.
@@ -47,10 +48,20 @@ io.on('connection', function(socket){
   console.log('a user connected');
 });
 
-io.on('start', function(socket){
-  console.log('a user connected');
+io.on('startRaffle', function(yardsaleId){
   // we get all product for sale and create a raffle object
-
+  Product
+  .findAll({
+    where: {
+      yardsaleId
+    }
+  })
+  .then((products) => {
+    const length = products.length;
+    products.forEach((product, index) => {
+      let curRaffle = new Raffle(io,product.id, product.quantity, yardsaleId);
+    })
+  })
 });
 
 app.listen(PORT, () => {

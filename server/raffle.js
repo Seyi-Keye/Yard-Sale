@@ -87,7 +87,11 @@ class Raffle {
           cost: (selectedRequest.price * (orderItem.quantity+1)),
         })
         .then(() => {
-          // emit socket event for the winner
+          this.socket.emit('raffleWinner', {
+             user: selectedRequest.userEmail,
+             productId: this.productId 
+            });
+
         })
       } else {
         // create a new orderitem
@@ -103,7 +107,10 @@ class Raffle {
         orderItemModel
         .create(orderItemObject)
         .then(() => {
-          // emit socket event for the winner
+          this.socket.emit('raffleWinner', {
+            user: selectedRequest.userEmail,
+            productId: this.productId 
+           });
         })
 
       }
@@ -122,7 +129,10 @@ class Raffle {
         leftOver: this.leftOver
       })
       .then(() => {
-        // emit end of raffle
+        this.socket.emit('end-product-raffle', {
+          yardsaleId: this.yardsaleId ,
+          productId: this.productId
+         });
       })
     })
     .catch(error => res.status(500).send(error));
@@ -131,4 +141,4 @@ class Raffle {
   }
 }
 
-module.exports = Human;
+module.exports = Raffle;

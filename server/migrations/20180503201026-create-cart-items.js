@@ -22,8 +22,8 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: 'Users',
-          key: 'id',
-          as: 'userId',
+          key: 'email',
+          as: 'email',
         },
         onUpdate: 'cascade',
         onDelete: 'cascade'
@@ -37,6 +37,9 @@ module.exports = {
         },
         onUpdate: 'cascade',
         onDelete: 'cascade'
+      },
+      userEmail: {
+        type: Sequelize.INTEGER
       },
       requestedQuantity: {
         type: Sequelize.INTEGER
