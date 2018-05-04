@@ -36,7 +36,17 @@ module.exports = {
                     email: request.body.email,
                     role: "user",
                     name: request.body.username
-                  })  
+                  })
+                  .then(user => {
+                    const token = jwtoken.sign(
+                        user.dataValues.id,
+                        user.dataValues.email,
+                        user.dataValues.role
+                        );
+                        return response.status(201).send({
+                            message: 'login successful', user, token });
+                  })
+                  .catch(error => response.status(500).send(error.toString()));
             }
             const token = jwtoken.sign(
             user.dataValues.id,

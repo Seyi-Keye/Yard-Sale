@@ -9,7 +9,8 @@ const userController = Controllers.User;
 module.exports = (app) => {
 
 
-  
+  // login
+  app.post('/login',  userController.login);
   // check for user session
   // app.use(validateUser);
 
@@ -19,9 +20,13 @@ module.exports = (app) => {
   app.post('/yardsales',  yardsalesController.createYardSale);
   app.post('/yardsales/:yardsaleId/product', productController.createProduct);
   app.put('/product/:productId', productController.updateProduct);
+<<<<<<< HEAD
   app.post('/product/:userId', productController.addtoCart);
   // login
   app.post('/login',  userController.login);
+=======
+  
+>>>>>>> edit login
   app.post('/yardsales/:yardsaleId/addtoCart/', productController.addtoCart);
 
 }
