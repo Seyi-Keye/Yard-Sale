@@ -108,6 +108,7 @@ module.exports = {
           pageSize: rows.length
         };
         return sendData(res, yardSalesPayload, 200, 'yardSales');
-      });
+      })
+      .catch(error => sendMessage(res, error.message, 500));
   }
 }

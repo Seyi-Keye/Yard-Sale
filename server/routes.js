@@ -3,17 +3,18 @@ import { validateUser, adminOnly } from './utilities';
 
 
 const yardsalesController = Controllers.YardSale;
-
+const productController = Controllers.Product;
 
 module.exports = (app) => {
 
 
-  app.get('/yardsales', yardsalesController.searchYardSale);
   
   // check for user session
   // app.use(validateUser);
 
+  app.get('/yardsales', yardsalesController.searchYardSale);
   // admin routes start here 
   app.post('/yardsales',  yardsalesController.createYardSale);
+  app.post('/yardsales/:yardsaleId/product', productController.createProduct);
 
 }
