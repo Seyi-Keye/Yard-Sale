@@ -4,7 +4,11 @@ import SideBar from '@/components/partials/SideBar';
 import '@/scss/pages/dashboard.scss';
 
 export default class Dashboard extends Component {
+  constructor(props) {
+    super(props)
+  }
   render() {
+    const Comp = this.props.Comp
     return (
       <div className="dashboard-container">
         <div className="sidebar-div">
@@ -13,7 +17,7 @@ export default class Dashboard extends Component {
         <div className="main-div">
           <Header />
           <div className="main-container">
-            Dashboard
+            <Comp />
           </div>
         </div>
       </div>
