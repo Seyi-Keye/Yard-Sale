@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var cart = sequelize.define('cart', {
+  var cart = sequelize.define('Cart', {
     userId: DataTypes.INTEGER,
     yardSaleId: DataTypes.INTEGER,
     expirationDate: DataTypes.DATE,
@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
   });
   cart.associate = (models)  => {
     // associations can be defined here
-    cart.hasMany(models.cartItems, {
+    cart.hasMany(models.CartItems, {
       foreignKey: 'cartId',
       as: 'cartItems',
     });

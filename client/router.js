@@ -1,12 +1,13 @@
-import Dashboard from './components/dashboard/Dashboard.jsx';
+import Main from './components/main/Main.jsx';
 import Login from './components/Login.jsx';
+import Raffle from './components/Raffle.jsx';
 
 export default [
   {
     name: 'dashboard',
     path: '/dashboard',
     secured: true,
-    component: Dashboard,
+    component: Main,
     exact: true
   },
   {
@@ -14,6 +15,13 @@ export default [
     path: '/',
     secured: false,
     component: Login,
+    exact: true
+  },
+  {
+    name: 'raffle',
+    path: '/raffle',
+    secured: true,
+    component: Raffle,
     exact: true
   }
 ]

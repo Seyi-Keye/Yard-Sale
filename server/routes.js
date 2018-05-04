@@ -21,5 +21,6 @@ module.exports = (app) => {
   app.put('/product/:productId', productController.updateProduct);
   // login
   app.post('/login',  userController.login);
+  app.post('/yardsales/:yardsaleId/addtoCart/', productController.addtoCart);
 
 }
