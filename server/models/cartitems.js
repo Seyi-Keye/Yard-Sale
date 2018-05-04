@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var CartItems = sequelize.define('CartItems', {
+  var cartItems = sequelize.define('cartItems', {
     cartId: DataTypes.INTEGER,
     product: DataTypes.STRING,
     requestedQuantity: DataTypes.INTEGER,
@@ -11,12 +11,12 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        CartItems.belongsTo(models.Cart, {
+        cartItems.belongsTo(models.Cart, {
           foriegnKey: 'cartId',
           onDelete: 'CASCADE',
         });
       }
     }
   });
-  return CartItems;
+  return cartItems;
 };
