@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
+import Card from '@/components/partials/Card'
+import '@/scss/components/main.scss'
 
 class Main extends Component {
   render() {
     return (
-      <div>
-        Main in progress
+      <div className="main-dashboard">
+        <div className="products">
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+        </div>
       </div>
     )
   }
