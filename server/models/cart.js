@@ -18,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
       foreignKey: 'cartId',
       as: 'cartItems',
     });
-    cart.belongsTo(models.user, {
+    cart.belongsTo(models.User, {
       foriegnKey: 'userId',
       onDelete: 'CASCADE',
     });
