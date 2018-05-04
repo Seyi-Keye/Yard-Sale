@@ -41,7 +41,7 @@ routes(router);
 app.use('/api/v1', router);
 
 // serve static files in public folder
-const publicPath = path.join(__dirname, 'build/');
+const publicPath = path.join(__dirname, '../build/');
 app.use(express.static(publicPath));
 
 app.all('/', (req, res) => {

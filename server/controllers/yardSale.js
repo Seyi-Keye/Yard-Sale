@@ -13,6 +13,7 @@ module.exports = {
    */
   createYardSale(req, res) {
     const yardSaleObj = req.body;
+    console.log("========>", yardSaleObj);
     // check if an yardSale does not exist with this name
     // get owner name
     YardSale.findOne({

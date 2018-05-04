@@ -1,0 +1,47 @@
+@import "../abstracts/variables";
+
+.won {
+  border-left: 0.2rem solid $palette-success;
+}
+
+.raffle {
+  height: 100%;
+  button.start-raffle {
+    width: 70%;
+  }
+  .admin-view {
+    position: relative;
+    button.yardsale.btn {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+  }
+  .raffle-item {
+    display: grid;
+    grid-template-columns: 5rem 1fr 5rem;
+    border-top: 0.1rem solid $grey-200;
+    border-right: 0.1rem solid $grey-200;
+    border-bottom: 0.1rem solid $grey-200;
+  }
+  .raffle-item--img {
+    height: 5rem;
+    width: 5rem;
+    padding: 1em;
+    border-right: 0.1rem solid $grey-200;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  .raffle-item--details {
+    padding: 0.5rem 0.5rem 0.2rem 0.5rem;
+    height: 5rem;
+  }
+  .raffle-item--action {
+    height: 5rem;
+    width: 5rem;
+    border-left: 0.1rem solid $grey-200;
+  }
+}
