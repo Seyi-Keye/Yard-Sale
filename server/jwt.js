@@ -11,7 +11,7 @@ export default {
   sign: (id, email, role) =>
     jwt.sign(
       { id, email, role },
-      process.env.JWT_SECRET,
+      'secret',
       { expiresIn: 60 * 60 }
     ),
 };

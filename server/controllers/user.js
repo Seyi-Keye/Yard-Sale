@@ -1,7 +1,7 @@
 import model from '../models';
 import validator from 'validator';
 import jwtoken from '../jwt';
-const User = model.user;
+const User = model.User;
 
 module.exports = {
     
@@ -33,8 +33,9 @@ module.exports = {
             if (!user){
                 return User
                 .create({
-                    email: request.body.title,
-                    role: "user"
+                    email: request.body.email,
+                    role: "user",
+                    name: request.body.username
                   })  
             }
             const token = jwtoken.sign(
