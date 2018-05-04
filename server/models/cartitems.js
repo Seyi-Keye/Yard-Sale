@@ -3,6 +3,7 @@ module.exports = function(sequelize, DataTypes) {
   var cartItems = sequelize.define('CartItems', {
     cartId: DataTypes.INTEGER,
     userId: DataTypes.INTEGER,
+    userEmail: DataTypes.STRING,
     productId: DataTypes.INTEGER,
     requestedQuantity: DataTypes.INTEGER,
     price: DataTypes.STRING,
