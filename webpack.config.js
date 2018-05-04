@@ -14,6 +14,13 @@ module.exports = {
     'font-awesome/scss/font-awesome.scss',
     './client/App.jsx'
   ],
+  resolve: {
+    extensions: ['.js', '.jsx', '.json'],
+    modules: ['node_modules'],
+    alias: {
+      '@': path.resolve('client')
+    }
+  },
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js'

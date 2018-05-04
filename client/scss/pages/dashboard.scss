@@ -1,0 +1,24 @@
+.dashboard-container {
+  font-size: 13px;
+  .sidebar-div {
+    width: 230px;
+    position: fixed;
+    height: 100%;
+    @media only screen and (max-width: 768px) {
+      & {
+        display: none;
+      }
+    }
+  }
+  .main-div {
+    margin-left: 230px;
+    @media only screen and (max-width: 768px) {
+      & {
+        margin-left: 0px;
+      }
+    }
+    .main-container {
+      padding: 40px;
+    }
+  }
+}

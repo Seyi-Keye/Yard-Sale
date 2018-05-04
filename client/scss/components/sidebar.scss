@@ -1,0 +1,44 @@
+.sidebar {
+  background-color: rgb(54, 93, 216);
+  height: 100%;
+  color: #fff;
+  .logo {
+    padding: 20px; // border-bottom: 1px solid #fff;
+    margin-bottom: 10px;
+    img {
+      max-width: 100%;
+      max-height: 30px;
+    }
+  }
+  .menu {
+    margin-bottom: 10px;
+    ul {
+      margin: 0;
+      padding: 0;
+      li {
+        list-style: none;
+        display: block;
+        a {
+          padding: 13px 15px;
+          background-color: rgb(244, 251, 254);
+          width: 100%;
+          display: block;
+          border-right: 3px solid rgb(253, 174, 64);
+          color: rgb(253, 174, 64);
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  .filters {
+    padding: 10px;
+    h2 {
+      font-weight: 300;
+      text-transform: uppercase;
+      font-size: 18px;
+      border-bottom: 2px solid rgb(253, 174, 64);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+  }
+}
