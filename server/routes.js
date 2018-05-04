@@ -16,5 +16,6 @@ module.exports = (app) => {
   // admin routes start here 
   app.post('/yardsales',  yardsalesController.createYardSale);
   app.post('/yardsales/:yardsaleId/product', productController.createProduct);
+  app.put('/product/:productId', productController.updateProduct);
 
 }
