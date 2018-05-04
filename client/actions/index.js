@@ -7,5 +7,6 @@ export const { Types, Creators } = createActions({
   hideFlashMessage: null,
   setCurrentUser: ['payload', 'token'],
   showModal: ['modalProps', 'modalType'],
-  showFlashMessage: ['flashMessageProps', 'flashMessageType']
+  showFlashMessage: ['flashMessageProps', 'flashMessageType'],
+  getProducts: ['products']
 });

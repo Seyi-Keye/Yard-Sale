@@ -5,6 +5,7 @@ import path from 'path';
 import helmet from 'helmet';
 import compression from 'compression';
 import methodOverride from 'method-override';
+import cors from 'cors'
 
 import bodyParser from 'body-parser';
 import routes from './routes';
@@ -17,6 +18,8 @@ const router = express.Router();
 // use hemlet to disable settings that would leak security
 app.use(helmet());
 app.use(compression());
+
+app.use(cors());
 
 // Parse incoming requests data
 app.use(bodyParser.json());
@@ -41,12 +44,12 @@ app.use(express.static(publicPath));
 app.all('/', (req, res) => {
   return res.sendFile(publicPath + 'index.html');
 });
-io.on('connection', function(socket){
+io.on('connection', function (socket) {
   console.log('a user connected');
 });
 
 app.listen(PORT, () => {
-  if (process.env.NODE_ENV === 'development'){
+  if (process.env.NODE_ENV === 'development') {
     console.log(`BuyIt is running on port:${PORT}`);
   }
 });
