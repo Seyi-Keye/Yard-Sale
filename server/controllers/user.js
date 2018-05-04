@@ -35,7 +35,7 @@ module.exports = {
                 .create({
                     email: request.body.email,
                     role: "user",
-                    name: request.body.username
+                    name: request.body.name
                   })
                   .then(user => {
                     const token = jwtoken.sign(

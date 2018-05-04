@@ -9,8 +9,13 @@ const userController = Controllers.User;
 module.exports = (app) => {
 
 
+<<<<<<< HEAD
   // login
   app.post('/login',  userController.login);
+=======
+   // login
+   app.post('/login',  userController.login);
+>>>>>>> add login route
   // check for user session
   // app.use(validateUser);
 
@@ -21,6 +26,7 @@ module.exports = (app) => {
   app.post('/yardsales/:yardsaleId/product', productController.createProduct);
   app.put('/product/:productId', productController.updateProduct);
 <<<<<<< HEAD
+<<<<<<< HEAD
   app.post('/product/:userId', productController.addtoCart);
   // login
   app.post('/login',  userController.login);
@@ -28,5 +34,9 @@ module.exports = (app) => {
   
 >>>>>>> edit login
   app.post('/yardsales/:yardsaleId/addtoCart/', productController.addtoCart);
+=======
+  app.get('/yardsales/:yardsaleId/cartItems', productController.getCartItems);
+  app.post('/yardsales/:yardsaleId/addtoCart', productController.addtoCart);
+>>>>>>> add login route
 
 }

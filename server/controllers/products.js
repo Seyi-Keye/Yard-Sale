@@ -210,7 +210,6 @@ module.exports = {
         .catch(error => sendMessage(res, error.message, 500));
     }
   },
-
   addtoCart(req, res) {
     let cartItemObject = {
           cartId: 0,
@@ -222,10 +221,11 @@ module.exports = {
           userEmail: req.user.email,
           userId: req.user.id
     }
+    const yardSaleId = parseInt(req.params.yardsaleId, 10);
     Cart.findOne({
       where: {
         userId: req.user.id,
-        yardSaleId: parseInt(req.params.yardsaleId, 10)
+        yardSaleId
       }
     }).then((foundCart) => {
       if (foundCart !== null) {
@@ -260,7 +260,7 @@ module.exports = {
       else {
         return Cart.create({
           userId: req.params.userId,
-          yardsaleId: req.body.yardsaleId,
+          yardsaleId,
           status: req.body.status,
         })
           .then((newCartCreated) => {
@@ -271,8 +271,32 @@ module.exports = {
               res.status(201).send({ message: 'Item added to cart successfully', cartItemAdded });
             })
           })
-          .catch(err => res.status(400).send(err));
+          .catch(err => res.status(500).send(err));
       }
     });
   },
+  getCartItems(req, res) {
+    const yardSaleId = parseInt(req.params.yardsaleId, 10);
+    Cart.findOne({
+      where: {
+        userId: req.user.id,
+        yardSaleId
+      }
+    }).then((foundCart) => {
+      if(foundCart) {
+          return CartItems.findOne({
+            where: {
+              cartId: foundCart.id,
+            }
+        })
+        .then((cartItems) => {
+          return sendData(res, cartItems, 200, 'cartItems');
+        })
+        .catch(err => res.status(400).send(err));
+      } else {
+        return sendMessage(res, 'You do have a cart for this YardSale.', 404);
+      }
+    })
+    .catch(err => res.status(400).send(err));
+  }
 }
