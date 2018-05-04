@@ -49,7 +49,6 @@ module.exports = {
     /**
    * Updates content of product in the database
    * Route: PUT: /products/:id
-   *
    * @param {any} req
    * @param {any} res
    * @returns {Response} response object
@@ -71,12 +70,16 @@ module.exports = {
           .update({
             name: req.body.name || product.name,
             condition: req.body.condition || product.condition,
-            price: req.body.price || product.price
+            price: req.body.price || product.price,
+            quantity: req.body.quantity || product.quantity,
+            maxslot: req.body.maxslot || product.maxslot,
+            yardsaleId: req.body.yardsaleId || product.yardsaleId,
+            imageUrl: req.body.imageUrl || product.imageUrl,
           })
           .then(updatedProduct => res.status(200)
           .json({ message: 'Update Successful', updatedProduct }))
-          .catch(error => res.status(400).send(error));
+          .catch(error => res.status(500).send(error));
       })
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(500).send(error));
   },
 }
