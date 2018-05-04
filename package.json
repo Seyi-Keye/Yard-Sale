@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "build": "webpack --watch",
-    "start": "node server/server.js",
+    "start": "babel-node server/server.js",
     "db:migrate": "sequelize db:migrate:undo:all && sequelize db:migrate",
     "db:seed": "sequelize db:seed:undo:all && sequelize db:seed:all",
     "start-dev": "NODE_ENV=development nodemon --watch server --exec babel-node server/server.js",
@@ -63,7 +63,6 @@
     "style-loader": "^0.21.0",
     "transfer-webpack-plugin": "^0.1.4",
     "url-loader": "^1.0.1",
-    "webpack-cli": "^2.1.2",
     "webpack-dev-server": "^3.1.4"
   }
 }

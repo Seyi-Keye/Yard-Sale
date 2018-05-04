@@ -34,10 +34,19 @@ routes(router);
 
 app.use('/api/v1', router);
 
+// serve static files in public folder
+const publicPath = path.join(__dirname, 'dist/');
+app.use(express.static(publicPath));
+
+app.all('/', (req, res) => {
+  return res.sendFile(publicPath + 'index.html');
+});
 io.on('connection', function(socket){
   console.log('a user connected');
 });
 
 app.listen(PORT, () => {
-  console.log(`BuyIt is running on port:${PORT}`);
+  if (process.env.NODE_ENV === 'development'){
+    console.log(`BuyIt is running on port:${PORT}`);
+  }
 });
