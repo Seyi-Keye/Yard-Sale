@@ -1,5 +1,5 @@
-import Controllers from '../controllers';
-import { validateUser, adminOnly } from '../utilities';
+import Controllers from './controllers';
+import { validateUser, adminOnly } from './utilities';
 
 
 const yardsalesController = Controllers.YardSale;
@@ -7,12 +7,13 @@ const yardsalesController = Controllers.YardSale;
 
 module.exports = (app) => {
 
-  // check for user session
-  app.use(validateUser);
 
   app.get('/yardsales', yardsalesController.searchYardSale);
+  
+  // check for user session
+  // app.use(validateUser);
 
   // admin routes start here 
-  app.post('/yardsales', adminOnly, yardsalesController.createYardSale);
+  app.post('/yardsales',  yardsalesController.createYardSale);
 
 }

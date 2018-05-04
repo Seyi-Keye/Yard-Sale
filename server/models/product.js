@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Product = sequelize.define('Product', {
+  var product = sequelize.define('product', {
     name: DataTypes.STRING,
     condition: DataTypes.STRING,
     price: DataTypes.STRING,
@@ -13,12 +13,12 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        Product.belongsTo(models.YardSale, {
+        product.belongsTo(models.YardSale, {
           foreignkey: 'yardsaleId',
           onDelete: 'CASCADE'
         });
       }
     }
   });
-  return Product;
+  return product;
 };

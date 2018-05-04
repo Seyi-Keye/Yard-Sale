@@ -1,5 +1,5 @@
 import model from '../models';
-const YardSale = model.yardsale;
+const YardSale = model.YardSales;
 import { 
   sendMessage,
   sendData
@@ -36,7 +36,55 @@ module.exports = {
    * @returns {req}
    */
   searchYardSale(req, res) {
-      let query = req.quey;
+      let query = req.query;
+      // add custom query
+      if (query.title) {
+        query.title = {
+          $like: `%${query.title}%`
+        }
+      }
+      if (query.location) {
+        query.location = {
+          $like: `%${query.location}%`
+        }
+      }
+      if (query.startBefore) {
+        query.startdate = {
+          $lte: query.startBefore
+        }
+      }
+      //  query for startdate
+      if (query.startAfter) {
+        if (query.startdate) {
+          query.startdate = {
+            $gte: query.startAfter,
+            $lte: query.startBefore
+          }
+        } else {
+          query.startdate = {
+            $gte: query.startAfter
+          }
+        }
+      }
+
+      //  query for saleDate
+      if (query.saleBefore) {
+        query.saleDate = {
+          $lte: query.saleBefore
+        }
+      }
+      if (query.saleAfter) {
+        if (query.startdate) {
+          query.saleDate = {
+            $gte: query.saleAfter,
+            $lte: query.saleBefore
+          }
+        } else {
+          query.saleDate = {
+            $gte: query.saleAfter
+          }
+        }
+      }
       const offset = parseInt(req.query.offset, 10) || 0;
       const limit = parseInt(req.query.limit, 10) || 10;
       YardSale.findAndCountAll({
@@ -46,11 +94,12 @@ module.exports = {
         order: [['title', 'ASC']],
       })
       .then((yardSales) => {
-        if (yardSales.length < 1) {
-          return sendMessage(res, 'No yardSale was found.', 404);
-        }
         const count = yardSales.count;
         const rows = yardSales.rows;
+
+        if (rows.length < 1) {
+          return sendMessage(res, 'No yardSale was found.', 404);
+        }
         const yardSalesPayload = {
           count,
           rows,

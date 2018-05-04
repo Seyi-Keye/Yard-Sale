@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var OrderItems = sequelize.define('OrderItems', {
+  var orderItems = sequelize.define('orderItems', {
     userId: DataTypes.INTEGER,
     product: DataTypes.STRING,
     quantity: DataTypes.INTEGER,
@@ -11,16 +11,16 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        OrderItems.belongsTo(models.YardSale, {
+        orderItems.belongsTo(models.YardSale, {
           foreignkey: 'yardsaleId',
           onDelete: 'CASCADE'
         });
-        OrderItems.belongsTo(models.User, {
+        orderItems.belongsTo(models.user, {
           foreignkey: 'userId',
           onDelete: 'CASCADE'
         });
       }
     }
   });
-  return OrderItems;
+  return orderItems;
 };

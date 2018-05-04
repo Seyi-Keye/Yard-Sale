@@ -1,9 +1,9 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Cart = sequelize.define('Cart', {
+  var cart = sequelize.define('cart', {
     userId: DataTypes.INTEGER,
     yardSaleId: DataTypes.INTEGER,
-    expirationDate: DataTypes.DATETIME,
+    expirationDate: DataTypes.DATE,
     status: DataTypes.STRING
   }, {
     classMethods: {
@@ -12,17 +12,17 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  Cart.associate = (models)  => {
+  cart.associate = (models)  => {
     // associations can be defined here
-    Cart.hasMany(models.CartItems, {
+    cart.hasMany(models.cartItems, {
       foreignKey: 'cartId',
       as: 'cartItems',
     });
-    Cart.belongsTo(models.users, {
+    cart.belongsTo(models.user, {
       foriegnKey: 'userId',
       onDelete: 'CASCADE',
     });
 
   };
-  return Cart;
+  return cart;
 };

@@ -1,26 +1,27 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var YardSale = sequelize.define('YardSale', {
+  var yardSale = sequelize.define('YardSales', {
     title: DataTypes.STRING,
-    startdate: DataTypes.DATETIME,
-    saleDate: DataTypes.DATETIME,
+    startdate: DataTypes.DATE,
+    saleDate: DataTypes.DATE,
     note: DataTypes.STRING,
     location: DataTypes.STRING,
-    rating: DataTypes.STRING
+    rating: DataTypes.STRING,
+    imgURL: DataTypes.STRING,
   }, {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        YardSale.hasMany(models.Product, {
-          foreignKey: 'yardsaleId',
-          as: 'yardsaleProducts',
+        yardSale.hasMany(models.Product, {
+          foreignKey: 'yardSaleId',
+          as: 'yardSaleProducts',
         });
-        YardSale.hasMany(models.OrderItems, {
-          foreignKey: 'yardsaleId',
-          as: 'yardsaleCompletedOrders',
+        yardSale.hasMany(models.OrderItems, {
+          foreignKey: 'yardSaleId',
+          as: 'yardSaleCompletedOrders',
         });
       }
     }
   });
-  return YardSale;
+  return yardSale;
 };
