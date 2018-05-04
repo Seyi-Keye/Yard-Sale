@@ -212,24 +212,49 @@ module.exports = {
   },
 
   addtoCart(req, res) {
+    let cartItemObject = {
+          cartId: 0,
+          product: req.body.productID,
+          requestedQuantity: req.body.requestedQuantity,
+          price: req.body.price,
+          cost: req.body.cost,
+          unassignedQuantity: req.body.unassignedQuantity,
+          userEmail: req.user.email,
+          userId: req.user.id
+    }
     Cart.findOne({
       where: {
         userId: req.params.userId
       }
     }).then((foundCart) => {
       if (foundCart !== null) {
-        return CartItems.create({
-          cartId: foundCart.id,
-          product: req.body.product,
-          requestedQuantity: req.body.requestedQuantity,
-          price: req.body.price,
-          cost: req.body.cost,
-          unassignedQuantity: req.body.unassignedQuantity
+        // update cartID 
+        cartItemObject.cartId = foundCart.id;
+        return CartItems.findOne({
+            where: {
+              cartId: foundCart.id,
+              productId: req.body.productID,
+            }
         })
-          .then((cartItemAdded) => {
-            res.status(201).send({ message: 'Item added to cart successfully', cartItemAdded });
-          })
-          .catch(err => res.status(400).send(err));
+        .then((existingCartItem) => {
+            if (existingCartItem) {
+              // update cartItem
+              CartItems
+              .update({
+                unassignedQuantity: req.body.currentQty,
+                requestedQuantity: req.body.currentQty
+              })
+              .then(updatedCartItem => res.status(200)
+              .json({ message: 'Update Successful Cart Item', updatedCartItem }))
+              .catch(error => res.status(500).send(error));
+            } else {
+              CartItems.create({cartItemObject})
+              .then((cartItemAdded) => {
+                res.status(201).send({ message: 'Item added to cart successfully', cartItemAdded });
+              })
+              .catch(err => res.status(400).send(err));
+            }
+        })
       }
       else {
         return Cart.create({
@@ -238,14 +263,10 @@ module.exports = {
           status: req.body.status,
         })
           .then((newCartCreated) => {
-            return CartItems.create({
-              cartId: newCartCreated.id,
-              product: req.body.product,
-              requestedQuantity: req.body.requestedQuantity,
-              price: req.body.price,
-              cost: req.body.cost,
-              unassignedQuantity: req.body.unassignedQuantity
-            }).then((cartItemAdded) => {
+            // update cartID 
+            cartItemObject.cartId = newCartCreated.id;
+            return CartItems.create({cartItemObject})
+              .then((cartItemAdded) => {
               res.status(201).send({ message: 'Item added to cart successfully', cartItemAdded });
             })
           })
