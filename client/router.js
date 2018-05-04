@@ -12,7 +12,7 @@ export default [
   {
     name: 'login',
     path: '/',
-    secured: true,
+    secured: false,
     component: Login,
     exact: true
   }
