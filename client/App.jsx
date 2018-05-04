@@ -1,7 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'bootstrap';
+import { Provider } from 'react-redux';
+import { Switch, BrowserRouter as Router, Route } from 'react-router-dom';
+import AuthContainer from '@/containers/AuthContainer'
+
+import configureStore from './store';
 import './scss/main.scss';
+
+import router from './router';
+import ModalRoot from './components/ModalRoot.jsx';
+import FlashMessageRoot from './components/FlashMessageRoot.jsx';
 
 /**
 * App.jsx: main entry file
@@ -9,17 +17,34 @@ import './scss/main.scss';
 */
 const App = () => {
   return (
-    <div className="home container-fluid">
-      <header className="section jumbotron jumbotron-fluid">
-        <div className="container-fluid">
-          <h2>Andela Yard Sale!!</h2>
+    <div>
+      <FlashMessageRoot />
+      <Router>
+        <div>
+          <Switch>
+            {
+              router.map((route) => (
+                <AuthContainer
+                  path={route.path}
+                  name={route.name}
+                  exact={route.exact}
+                  Comp={route.component}
+                  key={route.path}
+                  secured={route.secured}
+                />
+              ))
+            }
+          </Switch>
         </div>
-      </header>
+      </Router>
+      <ModalRoot />
     </div>
   );
 }
 
 ReactDOM.render(
-  <App />,
+  <Provider store={configureStore()}>
+    <App />
+  </Provider>,
   document.getElementById('app')
 );

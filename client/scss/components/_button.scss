@@ -1,0 +1,9 @@
+@import "../abstracts/mixins";
+
+button {
+	outline: none;
+}
+
+.btn-shadow{
+	@include button-shadow($palette-info)
+}
