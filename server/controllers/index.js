@@ -5,8 +5,10 @@
 // import each controller
 import * as YardSale from './yardSale';
 import * as Product from './products';
+import * as User from './user';
 
 module.exports = {
   YardSale,
-  Product
+  Product,
+  User
 };
