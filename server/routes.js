@@ -18,6 +18,6 @@ module.exports = (app) => {
   app.post('/yardsales',  yardsalesController.createYardSale);
   app.post('/yardsales/:yardsaleId/product', productController.createProduct);
   app.put('/product/:productId', productController.updateProduct);
-  app.post('/product/:userId', productController.addtoCart);
+  app.post('/yardsales/:yardsaleId/addtoCart/', productController.addtoCart);
 
 }
