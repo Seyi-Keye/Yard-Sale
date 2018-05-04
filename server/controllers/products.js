@@ -215,16 +215,17 @@ module.exports = {
     let cartItemObject = {
           cartId: 0,
           product: req.body.productID,
-          requestedQuantity: req.body.requestedQuantity,
+          requestedQuantity: 1,
           price: req.body.price,
-          cost: req.body.cost,
-          unassignedQuantity: req.body.unassignedQuantity,
+          cost: 0,
+          unassignedQuantity: 1,
           userEmail: req.user.email,
           userId: req.user.id
     }
     Cart.findOne({
       where: {
-        userId: req.params.userId
+        userId: req.user.id,
+        yardSaleId: parseInt(req.params.yardsaleId, 10)
       }
     }).then((foundCart) => {
       if (foundCart !== null) {
@@ -241,8 +242,8 @@ module.exports = {
               // update cartItem
               CartItems
               .update({
-                unassignedQuantity: req.body.currentQty,
-                requestedQuantity: req.body.currentQty
+                unassignedQuantity: (existingCartItem.requestedQuantity + 1),
+                requestedQuantity: (existingCartItem.requestedQuantity + 1)
               })
               .then(updatedCartItem => res.status(200)
               .json({ message: 'Update Successful Cart Item', updatedCartItem }))
