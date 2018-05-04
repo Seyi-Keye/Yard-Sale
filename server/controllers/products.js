@@ -224,7 +224,8 @@ module.exports = {
     }
     Cart.findOne({
       where: {
-        userId: req.params.userId
+        userId: req.user.id,
+        yardSaleId: parseInt(req.params.yardsaleId, 10)
       }
     }).then((foundCart) => {
       if (foundCart !== null) {

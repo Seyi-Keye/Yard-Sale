@@ -22,5 +22,6 @@ module.exports = (app) => {
   app.post('/product/:userId', productController.addtoCart);
   // login
   app.post('/login',  userController.login);
+  app.post('/yardsales/:yardsaleId/addtoCart/', productController.addtoCart);
 
 }
