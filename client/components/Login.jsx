@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 
 // Actions
-import { setCurrentUser } from '../actions/auth'
+import { authSuccess, setCurrentUser } from '../actions/auth'
 import { showModal, showFlashMessage } from '../actions/notification'
 
 import '../scss/pages/login.scss';
@@ -13,6 +14,7 @@ const GOOGLE_CLIENT_ID = '657521713134-rkvnf4nf94bju5tqovrtlee8qek02ib2.apps.goo
 const CLIENT_SECRET = 'wwbn_Zrzfi2INKNDHOuYc98N';
 
 const mapDispatchToProps = dispatch => ({
+  authSuccess: (currentUser, token, history) => dispatch(authSuccess(currentUser, token, history)),
   setCurrentUser: (response) => dispatch(setCurrentUser(response)),
   showModal: (modalProps, modalType) => dispatch(showModal({ modalProps, modalType })),
   showFlashMessage: (flashMessageProps, flashMessageType) => dispatch(showFlashMessage({ flashMessageProps, flashMessageType }))
@@ -26,10 +28,9 @@ class Login extends Component {
   constructor() {
     super();
   }
-
+  
   onSuccess = (response) => {
-    console.log('response: ', response)
-    this.props.setCurrentUser(response.profileObj, response.accessToken);
+    this.props.authSuccess(response.profileObj, response.accessToken, this.props.history);
   }
 
   onFailure = (response) => {
@@ -96,4 +97,4 @@ class Login extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Login));
