@@ -2,7 +2,8 @@
 module.exports = function(sequelize, DataTypes) {
   var cartItems = sequelize.define('cartItems', {
     cartId: DataTypes.INTEGER,
-    product: DataTypes.STRING,
+    userId: DataTypes.INTEGER,
+    productId: DataTypes.INTEGER,
     requestedQuantity: DataTypes.INTEGER,
     price: DataTypes.STRING,
     cost: DataTypes.INTEGER,
@@ -13,6 +14,14 @@ module.exports = function(sequelize, DataTypes) {
         // associations can be defined here
         cartItems.belongsTo(models.Cart, {
           foriegnKey: 'cartId',
+          onDelete: 'CASCADE',
+        });
+        cartItems.belongsTo(models.Product, {
+          foriegnKey: 'productId',
+          onDelete: 'CASCADE',
+        });
+        cartItems.belongsTo(models.user, {
+          foriegnKey: 'userId',
           onDelete: 'CASCADE',
         });
       }

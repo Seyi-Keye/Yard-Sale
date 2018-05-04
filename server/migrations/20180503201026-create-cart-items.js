@@ -18,8 +18,25 @@ module.exports = {
         onUpdate: 'cascade',
         onDelete: 'cascade'
       },
-      product: {
-        type: Sequelize.STRING
+      userId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users',
+          key: 'id',
+          as: 'userId',
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
+      },
+      productId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Products',
+          key: 'id',
+          as: 'productId',
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
       },
       requestedQuantity: {
         type: Sequelize.INTEGER

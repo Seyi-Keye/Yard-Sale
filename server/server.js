@@ -28,6 +28,8 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const PORT = process.env.PORT || 1234;
 
+import model from '../models';
+const Product = model.Product;
 
 // Require all routes into the application.
 routes(router);
@@ -43,6 +45,12 @@ app.all('/', (req, res) => {
 });
 io.on('connection', function(socket){
   console.log('a user connected');
+});
+
+io.on('start', function(socket){
+  console.log('a user connected');
+  // we get all product for sale and create a raffle object
+
 });
 
 app.listen(PORT, () => {

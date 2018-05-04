@@ -2,7 +2,7 @@
 module.exports = function(sequelize, DataTypes) {
   var orderItems = sequelize.define('orderItems', {
     userId: DataTypes.INTEGER,
-    product: DataTypes.STRING,
+    productId: DataTypes.INTEGER,
     quantity: DataTypes.INTEGER,
     yardsaleId: DataTypes.INTEGER,
     cost: DataTypes.INTEGER,
