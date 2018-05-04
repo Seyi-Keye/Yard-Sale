@@ -1,7 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'bootstrap';
+import { Provider } from 'react-redux';
+
+import configureStore from './store';
+
 import './scss/main.scss';
+
+import Login from './components/Login.jsx';
+import ModalRoot from './components/ModalRoot.jsx';
+import FlashMessageRoot from './components/FlashMessageRoot.jsx';
 
 /**
 * App.jsx: main entry file
@@ -9,17 +16,17 @@ import './scss/main.scss';
 */
 const App = () => {
   return (
-    <div className="home container-fluid">
-      <header className="section jumbotron jumbotron-fluid">
-        <div className="container-fluid">
-          <h2>Andela Yard Sale!!</h2>
-        </div>
-      </header>
+    <div>
+      <FlashMessageRoot />
+      <Login />
+      <ModalRoot />
     </div>
   );
 }
 
 ReactDOM.render(
-  <App />,
+  <Provider store={configureStore()}>
+    <App />
+  </Provider>,
   document.getElementById('app')
 );
