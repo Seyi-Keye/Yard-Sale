@@ -4,6 +4,7 @@ import { validateUser, adminOnly } from './utilities';
 
 const yardsalesController = Controllers.YardSale;
 const productController = Controllers.Product;
+const userController = Controllers.User;
 
 module.exports = (app) => {
 
@@ -19,5 +20,7 @@ module.exports = (app) => {
   app.post('/yardsales/:yardsaleId/product', productController.createProduct);
   app.put('/product/:productId', productController.updateProduct);
   app.post('/product/:userId', productController.addtoCart);
+  // login
+  app.post('/login',  userController.login);
 
 }
