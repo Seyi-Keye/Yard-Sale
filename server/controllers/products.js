@@ -64,7 +64,7 @@ module.exports = {
         $like: `%${query.name}%`
       }
     }
-    if (query.LeftOver) {
+    if (query.leftOver) {
       query.leftOver = {
         $gt: 0
       }
