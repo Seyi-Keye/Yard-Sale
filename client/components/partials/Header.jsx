@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import '@/scss/components/header.scss';
+
+import { logout } from '@/actions/auth'
 
 const mapStateToProps = state => ({
   ...state.auth
 });
 
+const mapDispatchToProps = dispatch => ({
+  logout: (history) => dispatch(logout(history))
+})
+
 class Header extends Component {
   componentDidMount() {
     console.log('header props: ', this.props)
+  }
+  logout = (event) => {
+    this.props.logout(this.props.history)
   }
   render() {
     const { currentUser } = this.props;
@@ -39,10 +48,13 @@ class Header extends Component {
               <img src={`${currentUser.imageUrl}`} />
             </div>
           </div>
+          <div className="header-nav--item">
+            <button type="button" className="btn btn-link" onClick={this.logout}>Logout</button>
+          </div>
         </div>
       </div>
     )
   }
 }
 
-export default connect(mapStateToProps, null)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import FormGroup from '@/components/partials/FormGroup'
 import '@/scss/components/sidebar.scss';
 import logoFull from '@/images/logo-full.png'
@@ -16,7 +17,8 @@ export default class Sidebar extends Component {
     return (
       <div className="sidebar">
         <div className="logo">
-          <img src={logoFull} />
+          <Link to="/">
+            <img src={logoFull} /></Link>
         </div>
         <div className="menu">
           <ul>

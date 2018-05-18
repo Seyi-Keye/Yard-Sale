@@ -1,6 +1,6 @@
 import Main from './components/main/Main.jsx';
 import Login from './components/Login.jsx';
-import Raffle from './components/Raffle.jsx';
+import Raffle from './components/raffle/Raffle.jsx';
 
 export default [
   {
