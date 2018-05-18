@@ -15,5 +15,6 @@ export const { Types, Creators } = createActions({
   getRaffleWinner: ['payload'],
   endProductRaffle: ['payload'],
   endAllRaffles: ['payload'],
-  getYardSales: ['payload', 'error']
+  getYardSales: ['payload', 'error'],
+  logout: null
 });

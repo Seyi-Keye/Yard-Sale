@@ -14,13 +14,14 @@ export default class Card extends Component {
         return colors[0];
       case 'fair':
         return colors[1];
-      case 'poor':
+      case 'bad':
         return colors[2];
       default:
         return ''
     }
   }
   render() {
+    const format = amount => parseInt(amount, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')
     return (
       <div className="custom-card">
         <div className="card">
@@ -34,14 +35,14 @@ export default class Card extends Component {
             <div className="split">
               <div className="info">
                 <p className="condition"
-                  style={{ color: this.getColor(this.props.condition) }}
+                  style={{ color: this.getColor(this.props.condition.toLowerCase()) }}
                 >
                   <span><i className="fa fa-star" aria-hidden="true"></i> {this.props.condition}</span>
                 </p>
-                <p><span className="number">{this.props.quantity}</span> piece available</p>
+                <p><span className="number">{this.props.quantity}</span>Qty.</p>
               </div>
               <div className="price">
-                <span>₦{this.props.price}</span>
+                <span>₦{format(this.props.price)}</span>
               </div>
             </div>
           </div>

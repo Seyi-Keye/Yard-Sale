@@ -1,6 +1,6 @@
 import { Types } from '../actions';
 
-const { SET_CURRENT_USER } = Types;
+const { SET_CURRENT_USER, LOGOUT } = Types;
 
 const initialState = {
   currentUser: null,
@@ -15,7 +15,12 @@ export default (state=initialState, action) => {
         currentUser: action.payload,
         token: action.token
       }
-  
+    case LOGOUT: {
+      return {
+        ...state,
+        currentUser: null
+      }
+    }
     default:
      return state;
   }
