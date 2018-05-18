@@ -9,7 +9,7 @@ const userController = Controllers.User;
 module.exports = (app) => {
   app.post('/login', userController.login);
   // check for user session
-  // app.use(validateUser);
+  app.use(validateUser);
   app.get('/yardsales', yardsalesController.searchYardSale);
   app.get('/products', productController.searchProduct);
   app.get('/yardsales/:yardsaleId/cartItems', productController.getCartItems);
