@@ -1,0 +1,15 @@
+@import "variables";
+
+//Buttons mixin
+@mixin button-shadow($color) {
+	box-shadow: .125rem .125rem .5rem rgba($color, .30);
+	transition: .3s;
+	&:hover {
+		background: $color;
+		border-color: $color;
+		transform: translateY(-.125rem);
+	}
+	&:focus {
+		background: $color;
+	}
+}

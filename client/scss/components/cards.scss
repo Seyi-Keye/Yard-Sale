@@ -1,0 +1,90 @@
+.custom-card {
+  padding: 5px;
+  flex-basis: 230px;
+  .card {
+    border: none;
+    box-shadow: 0 1px 5px 0 rgba(47, 5, 232, 0.1);
+    .img {
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center; // border-bottom: thin solid rgba(47, 5, 232, 0.1);
+      box-shadow: 0 3px 8px 0 rgba(138, 136, 136, 0.1);
+      img {
+        max-width: 200px;
+        max-height: 200px;
+      }
+    }
+    .card-body {
+      .title {
+        h3 {
+          font-size: 13px;
+          font-weight: 400;
+          text-transform: capitalize;
+          padding-bottom: 7px;
+          border-bottom: thin solid rgba(138, 136, 136, 0.1);
+          color: rgb(73, 72, 72);
+        }
+      }
+      .split {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        .info {
+          p {
+            margin-bottom: 5px;
+            color: rgb(96, 96, 96);
+          }
+          .number {
+            padding: 3px;
+            background-color: rgb(253, 174, 64);
+            color: #fff;
+            font-size: 12px;
+            border-radius: 2px;
+            display: inline-block;
+            margin-right: 5px;
+            min-width: 25px;
+            text-align: center;
+          }
+        }
+        .price {
+          height: 100%;
+          display: flex;
+          align-items: flex-end;
+          span {
+            padding: 3px 7px;
+            border: 2px solid rgb(57, 97, 213);
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgb(57, 97, 213);
+            font-weight: 500;
+          }
+        }
+      }
+    }
+    .card-footer {
+      background: transparent;
+      border-top: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      button {
+        height: 35px; // background-color: rgb(253, 174, 64);
+        color: rgb(253, 174, 64);
+        border: 1px solid rgb(253, 174, 64);
+        border-radius: 2px;
+        width: 120px;
+        cursor: pointer;
+        text-transform: uppercase;
+        font-size: 11px;
+        transition: 0.5s ease;
+        &:hover {
+          background-color: rgb(253, 174, 64);
+          color: #fff;
+        }
+      }
+    }
+  }
+}
